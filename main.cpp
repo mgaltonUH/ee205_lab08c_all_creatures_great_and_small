@@ -12,7 +12,7 @@
 #include <iostream>
 #include "Animal.h"
 
-int main() {
+int main () {
     Animal myFirstAnimal = Animal( "Felis catus" );
     myFirstAnimal.setGender( MALE );
     myFirstAnimal.setWeight( 19 );  // @todo Refactor to include Unit of Measure

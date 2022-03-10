@@ -9,21 +9,18 @@
 /// @author Mariko Galton <mgalton@hawaii.edu>
 /// @date   10_Mar_2022
 ///////////////////////////////////////////////////////////////////////////////
-
+#include <iostream>
 #include "Animal.h"
 
 using namespace std;
 
+const string Animal::kingdom = "Animalia";
 
-const string Animal:: kingdom = "Animalia";
-
-Animal::Animal(const string &newspecies) : species(newspecies) {
-    Animal::species = newspecies;
+Animal::Animal(const string &newSpecies) : species(newSpecies) {
+    Animal::species = newSpecies;
 }
 
 Animal::Animal(const string &species, Gender gender) : species(species), gender(gender) {}
-
-
 
 Animal::Animal(const string &species, Gender gender, float weight) : species(species), gender(gender), weight(weight) {}
 
@@ -60,4 +57,3 @@ void Animal::printInfo() {
 bool Animal::isvalid() {
     return false;
 }
-
