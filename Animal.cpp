@@ -51,9 +51,18 @@ void Animal::setWeight(float weight) {
 }
 
 void Animal::printInfo() {
+    cout << "Animal Fields" << endl;
+    cout << "Kingdom = [" << getKingdom() << "]" << endl;
+    cout << "Species = [" << getSpecies() << "]" << endl;
+    cout << "Weight = [" << getWeight() << "]" << endl;
+    cout << "Gender = [" << getGender() << "]" << endl;
 
 }
 
 bool Animal::isvalid() {
+    return false;
+}
+
+bool Animal::validateWeight(const float weight) {
     return false;
 }
