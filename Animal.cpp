@@ -70,7 +70,6 @@ void Animal::printInfo() {
     cout << "Species = [" << getSpecies() << "]" << endl;
     cout << "Weight = [" << getWeight() << "]" << endl;
     cout << "Gender = [" << getGender() << "]" << endl;
-
 }
 
 bool Animal::isValid() {
@@ -106,4 +105,3 @@ void Animal::setSpecies(const std::string newSpecies) {
 
     species = newSpecies;
 }
-
