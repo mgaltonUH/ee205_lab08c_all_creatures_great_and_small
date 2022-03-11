@@ -16,15 +16,23 @@ using namespace std;
 
 const string Animal::kingdom = "Animalia";
 
-Animal::Animal(const string &newSpecies) : species(newSpecies) {
+Animal::Animal(const string &newSpecies) {
     Animal::species = newSpecies;
 }
 
-Animal::Animal(const string &species, Gender gender) : species(species), gender(gender) {}
+Animal::Animal(const string &newSpecies, Gender gender) : gender(gender) {
+    setSpecies( newSpecies );
+}
 
-Animal::Animal(const string &species, Gender gender, float weight) : species(species), gender(gender), weight(weight) {}
+Animal::Animal(const string &newSpecies, Gender gender, float newWeight) : gender(gender) {
+    setSpecies( newSpecies );
+    setWeight( newWeight );
+}
 
-Animal::Animal(const string &species, float weight) : species(species), weight(weight) {}
+Animal::Animal(const string &newSpecies, float newWeight) {
+    setSpecies( newSpecies );
+    setWeight( newWeight );
+}
 
 const string &Animal::getKingdom() {
     return kingdom;
@@ -38,16 +46,22 @@ Gender Animal::getGender() const {
     return gender;
 }
 
-void Animal::setGender(Gender gender) {
-    Animal::gender = gender;
+void Animal::setGender(Gender newGender) {
+    if( gender != UNKNOWN_GENDER && newGender != UNKNOWN_GENDER ) {
+        throw logic_error("Previous gender must be UNKNOWN_GENDER");
+    }
+        Animal::gender = newGender;
 }
 
 float Animal::getWeight() const {
     return weight;
 }
 
-void Animal::setWeight(float weight) {
-    Animal::weight = weight;
+void Animal::setWeight(float newWeight) {
+    if(!validateWeight(newWeight)) {
+        throw invalid_argument("Weight must be greater > 0");
+    }
+    Animal::weight = newWeight;
 }
 
 void Animal::printInfo() {
@@ -59,11 +73,37 @@ void Animal::printInfo() {
 
 }
 
-bool Animal::isvalid() {
-    return false;
+bool Animal::isValid() {
+    if (!validateWeight(weight))
+        return false;
+
+    // In all other cases, it is valid
+    return true;
 }
 
-bool Animal::validateWeight(const float weight) {
+bool Animal::validateWeight(const float newWeight) {
+    if( newWeight == UNKNOWN_WEIGHT )
+        return true;
+
+    if (newWeight > 0)
+        return true;
+
+    // In all other cases, the weight is invalid
     return false;
 
 }
+
+bool Animal::validateSpecies(const std::string newSpecies) {
+    if( newSpecies.empty() )
+        return false;
+
+    return true;
+}
+
+void Animal::setSpecies(const std::string newSpecies) {
+    if(!validateSpecies( newSpecies ))
+        throw invalid_argument("A species can't be empty.");
+
+    species = newSpecies;
+}
+
